@@ -1,3 +1,4 @@
+// services/auth.service.ts
 import api from './api';
 
 export interface LoginData {
@@ -24,49 +25,47 @@ export interface AuthResponse {
 
 class AuthService {
     async login(data: LoginData): Promise<AuthResponse> {
-        try {
-            const response = await api.post<AuthResponse>('/api/auth/login', data);
-            return response.data;
-        } catch (error) {
-            return { success: false, message: 'Login failed' };
+        const response = await api.post<AuthResponse>('/api/auth/login', data);
+        
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token);
+            api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
         }
+        
+        return response.data;
     }
 
     async register(data: RegisterData): Promise<AuthResponse> {
-        try {
-            const response = await api.post<AuthResponse>('/api/auth/register', data);
-            return response.data;
-        } catch (error) {
-            return { success: false, message: 'Registration failed' };
-        }
+        const response = await api.post<AuthResponse>('/api/auth/register', data);
+        return response.data;
     }
 
     async logout(): Promise<void> {
         try {
             await api.post('/api/auth/logout');
+            localStorage.removeItem('token');
+            delete api.defaults.headers.common['Authorization'];
         } catch (error) {
             console.log('Logout failed', error);
+            localStorage.removeItem('token');
+            delete api.defaults.headers.common['Authorization'];
         }
     }
 
     async getSession(): Promise<AuthResponse> {
-        try {
-            const response = await api.get<AuthResponse>('/api/auth/');
-            console.log('getSession response:', response.data);
-            return response.data;
-        } catch (error) {
-            return { success: false, message: 'Failed to fetch session' };
+        const token = localStorage.getItem('token');
+        if (token) {
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         }
+        
+        const response = await api.get<AuthResponse>('/api/auth/');
+        console.log('getSession response:', response.data);
+        return response.data;
     }
 
     async getMe(): Promise<AuthResponse> {
-        
-        try {
-            const response = await api.get<AuthResponse>('/api/auth/me');
-            return response.data;
-        } catch (error) {
-            return { success: false, message: 'Failed to fetch user data' };
-        }
+        const response = await api.get<AuthResponse>('/api/auth/me');
+        return response.data;
     }
 }
 
