@@ -19,9 +19,12 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
         );
     }
 
-    if (!user) {
+    if (!user || user === null) {
+        console.log('User is not authenticated, redirecting to login.');
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
+
+    console.log('User is authenticated, rendering protected content.', user);
 
     return <>{children}</>;
 }
