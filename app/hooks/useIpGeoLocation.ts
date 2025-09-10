@@ -85,9 +85,6 @@ export const useIPGeolocation = () => {
 
             return { success: true, data: geoData };
         } catch (err) {
-            if (axios.isAxiosError(err)) {
-                toast.error(err.response?.data?.message || "Server error");
-            }
             return { success: false, data: undefined };
         }
     };
