@@ -1,87 +1,105 @@
-# Welcome to React Router!
+# IP Address Geolocation Client
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A client-side web application built with React and React Router that retrieves and displays geolocation information for IP addresses. Deployed on Vercel: https://ip-add-geoloc-client.vercel.app/
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+##  Project Stack
+- **Language & Bundler**: TypeScript, Vite  
+- **Client-side Routing**: React Router (v7)  
+- **Styling**: Tailwind CSS (with `@tailwindcss/vite`)  
+- **UI Libraries**: Radix UI components, Framer Motion, Sonner  
+- **Forms & Validation**: React Hook Form, Zod, @hookform/resolvers  
+- **HTTP Client**: Axios  
+- **Utilities**: clsx, class-variance-authority, dotted-map, motion, next-themes  
 
-## Features
+##  Prerequisites
+Ensure you have the following installed:
+- Node.js (v18 or newer recommended)
+- npm (comes bundled with Node.js)
+- Optional: `pnpm` or `yarn` if you prefer those package managers
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+##  Installation & Local Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/jbotmallen/ip-add-geoloc-client.git
+   cd ip-add-geoloc-client
+````
 
-## Getting Started
+2. Install dependencies:
 
-### Installation
+   ```bash
+   npm install
+   ```
 
-Install the dependencies:
+   *Alternatively, if using Yarn or pnpm:*
 
-```bash
-npm install
-```
+   ```bash
+   yarn install
+   # or
+   pnpm install
+   ```
 
-### Development
+3. Start the development server with hot-reloading:
 
-Start the development server with HMR:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run dev
-```
+   This launches Vite in development mode using React Router's dev server.
 
-Your application will be available at `http://localhost:5173`.
+4. Open your browser and visit `http://localhost:5173` (or whichever port Vite assigns).
 
-## Building for Production
+## Available Scripts
 
-Create a production build:
+The following npm scripts are defined in `package.json`:
 
-```bash
-npm run build
-```
+| Script              | Description                                                                       |
+| ------------------- | --------------------------------------------------------------------------------- |
+| `npm run dev`       | Runs the development server using React Router’s dev feature                      |
+| `npm run build`     | Builds the production version of the app using React Router build                 |
+| `npm start`         | Serves the production build via React Router serve: `./build/server/index.js`     |
+| `npm run typecheck` | Generates types via React Router (`typegen`) and runs TypeScript compiler (`tsc`) |
+
+## Environment Variables
+
+No environment variables are required—unless your app uses external API keys or custom configurations, which are not listed here.
 
 ## Deployment
 
-### Docker Deployment
+The app is currently deployed on **Vercel**, configured to serve the build output automatically:
 
-To build and run using Docker:
+* Visit live demo: [https://ip-add-geoloc-client.vercel.app/](https://ip-add-geoloc-client.vercel.app/)
+* Automatic deployments on push to the default branch (e.g., `main` or `master`).
 
-```bash
-docker build -t my-app .
+## Notes & Tips
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+* The project leverages **ES module** syntax thanks to `"type": "module"` in `package.json`.
+* React Router v7 offers integrated data loading, routing, and potentially backend support via `@react-router/node` and `@react-router/serve`.
+* Tailwind integrated via the `@tailwindcss/vite` plugin ensures fast utility-first styling.
+* If you expand routing or API integration, consider creating separate `.env` placeholders (e.g., `.env.local`) for local configs.
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## Contributing
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+Contributions are welcome! Whether it’s bug fixes, feature improvements, or simply feedback—feel free to open an issue or submit a pull request.
 
-### DIY Deployment
+## License
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+Specify the license here, e.g., MIT.
 
 ---
 
-Built with ❤️ using React Router.
+### Quick Start Recap
+
+```bash
+git clone <repo-url>
+cd ip-add-geoloc-client
+npm install
+npm run dev
+```
+
+Feel free to let me know if you’d like additions like:
+
+* Example JSDoc annotations
+* CI/CD details for Vercel
+* Customizing theme, localization, or API sources
+
+Happy coding!
